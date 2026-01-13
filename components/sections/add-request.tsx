@@ -27,7 +27,7 @@ export default function AddRequest({ open, onOpenChange, setOpen , formik , step
 
 
             <h1 className='text-2xl font-bold my-5 text-black'>Create Request</h1>
-            <button onClick={() => setOpen(true)} className='bg-white p-3 flex flex-col items-between justify-between  rounded-md w-46'>
+            <button onClick={() => setOpen(true)} className='bg-white my-3 p-3 flex flex-col items-between justify-between  rounded-md w-46'>
                 <div className='flex items-center justify-between'>
                     <span className='bg-black p-1 rounded-md'>
                         <FileIcon color="white" className='w-5 h-5' />
@@ -54,6 +54,7 @@ export default function AddRequest({ open, onOpenChange, setOpen , formik , step
                         {/* CONTENT */}
                         {step === 'business' && (
                             <BusinessAreaStep
+                            formik={formik}
                                 onSelect={(category) => {
                                     formik.setFieldValue('category', category)
                                     setStep('details')

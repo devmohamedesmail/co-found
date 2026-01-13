@@ -21,6 +21,9 @@ export default function DetailsStep({
             formik.setFieldValue('title', e.target.value)
           }
         />
+        {formik.touched.title && formik.errors.title && (
+          <p className="text-red-500 text-xs">{formik.errors.title}</p>
+        )}
       </div>
 
       <div>
@@ -32,6 +35,9 @@ export default function DetailsStep({
             formik.setFieldValue('description', e.target.value)
           }
         />
+        {formik.touched.description && formik.errors.description && (
+          <p className="text-red-500 text-xs">{formik.errors.description}</p>
+        )}
       </div>
 
       <div>
@@ -51,6 +57,7 @@ export default function DetailsStep({
           <p className='text-center text-muted-foreground'>or, click to browse</p>
           <button className='text-center border rounded-md  py-1 px-2 text-xs'>Select Files</button>
         </Label>
+        
       </div>
 
       <div className="flex justify-between pt-4">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChevronRight } from 'lucide-react'
 
-export default function BusinessAreaStep({ onSelect }: { onSelect: (category: string) => void }) {
+export default function BusinessAreaStep({ onSelect, formik }: { onSelect: (category: string) => void, formik: any }) {
   const businessAreas = [
     {
       name: 'PPC',
@@ -58,6 +58,13 @@ export default function BusinessAreaStep({ onSelect }: { onSelect: (category: st
           <ChevronRight size={16} />
         </button>
       ))}
+
+      {formik.touched.category && formik.errors.category && (
+        <p className="text-red-500 text-xs">{formik.errors.category}</p>
+      )}
+
+
+
     </div>
   )
 }

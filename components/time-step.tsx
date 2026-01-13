@@ -33,7 +33,7 @@ export default function TimeStep({
 
                     <div className="space-y-3 text-sm">
                         <div>⏱ Duration</div>
-                        <Tabs defaultValue="account" className="w-[400px]">
+                        <Tabs defaultValue="15m" className="w-[400px]">
                             <TabsList defaultValue={formik.values.duration}>
                                 {["15m", "30m", "45m", "1h"].map((d) => (
                                     <TabsTrigger key={d} onClick={() => formik.setFieldValue('duration', d)} value={d}>{d}</TabsTrigger>
@@ -45,6 +45,10 @@ export default function TimeStep({
                         <div className="text-muted-foreground">
                             📍 Europe / Dublin
                         </div>
+
+                        {formik.touched.duration && formik.errors.duration && (
+                            <p className="text-red-500 text-xs">{formik.errors.duration}</p>
+                        )}
                     </div>
                 </div>
 
@@ -68,7 +72,9 @@ export default function TimeStep({
                             {/* Selected: {format(date, "PPP")} */}
                         </p>
                     )}
-
+                    {formik.touched.deadline && formik.errors.deadline && (
+                        <p className="text-red-500 text-xs">{formik.errors.deadline}</p>
+                    )}
 
                 </div>
             </div>
@@ -78,19 +84,13 @@ export default function TimeStep({
                     Back
                 </Button>
                 <Button
+                    disabled={formik.isSubmitting}
                     type='submit'
-
-                    className='bg-green-600 text-white'
-                    // onClick={() => onSubmit({ date, duration })} 
-                    // onClick={formik.handleSubmit}
-
-
+                    className='bg-green-600 hover:bg-green-700 text-white'
                     variant="secondary">
                     Schedule request
                 </Button>
-                <button type="submit"  className="btn btn-primary bg-red-600">
-                    Submit
-                </button>
+
             </div>
         </div>
 
