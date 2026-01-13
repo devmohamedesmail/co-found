@@ -19,7 +19,7 @@ export default function Banner() {
         {name: 'Operations', href: '#' ,icon: '/icons/google-color-svgrepo-com.svg'},
     ]
     return (
-       <div className='pt-12 px-8'>
+       <div className='pt-12'>
          <div className='bg-black rounded-lg py-10 px-6 flex justify-between items-center'>
             <div className='flex flex-col gap-2 flex-1'>
                 <h3 className='text-white text-4xl font-bold'>Get expert help, instantly</h3>

@@ -1,17 +1,14 @@
-import Image from "next/image";
-import { SignIn } from '@clerk/nextjs'
-import { auth, currentUser } from '@clerk/nextjs/server'
+import { auth } from '@clerk/nextjs/server'
+import { redirect } from 'next/navigation'
 
 export default async function Home() {
-  const { userId, sessionId } = await auth()
-  const user = await currentUser()
-  console.log("user", user)
-  return (
-    <>
+  const { userId } = await auth()
 
-      <div className="flex min-h-screen items-center justify-center">
-        <SignIn />
-      </div>
-    </>
-  );
+  // If user is authenticated, redirect to dashboard
+  if (userId) {
+    redirect('/dashboard')
+  }
+
+  // If not authenticated, redirect to sign-in
+  redirect('/sign-in')
 }

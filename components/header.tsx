@@ -1,9 +1,33 @@
-import React from 'react'
+'use client'
+import React, { useState ,useEffect} from 'react'
 import { LayoutDashboard, Users, Layers, HardDrive, GitPullRequest, MessageCircleMore, Bell } from 'lucide-react'
 import Link from 'next/link'
-import { OrganizationSwitcher, SignedIn, UserButton } from '@clerk/nextjs'
+import { OrganizationSwitcher, SignedIn, useAuth, UserButton, useUser } from '@clerk/nextjs'
+// import { getAuth } from '@clerk/nextjs/server'
 
+type Organization = {
+  id: string;
+  name: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  role: string;
+  status: string;
+};
 export default function Header() {
+  const { userId } = useAuth();
+  const { user } = useUser();
+  const [organizations, setOrganizations] = useState<Organization[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log('Current userId:', userId);
+  console.log('Current user:', user);
+
+
+
+ 
+
+
   const items = [
     { name: 'Home', href: '/dashboard', icon: <LayoutDashboard color='white' className='w-5 h-5' /> },
     { name: 'Community', href: '#', icon: <Users color='white' className='w-5 h-5' /> },
@@ -13,9 +37,9 @@ export default function Header() {
   ]
   return (
     <header className='flex justify-between items-center p-4 gap-4 h-16 bg-black'>
-     
+
       <div className='flex items-center gap-4'>
-         <OrganizationSwitcher />
+        <OrganizationSwitcher />
         {items.map((item) => (
           <Link key={item.name} href={item.href} className='flex items-center gap-2'>
             {item.icon}
